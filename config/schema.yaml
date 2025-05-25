@@ -1,0 +1,50 @@
+transaction_id:
+  type: integer
+  unique: true
+  description: "Unique identifier for each transaction"
+
+user_id:
+  type: integer
+  null: false
+  description: "Identifier for the customer"
+
+amount:
+  type: float
+  min: 0.01
+  description: "Transaction amount in USD"
+
+timestamp:
+  type: datetime
+  description: "Date and time of transaction"
+
+country:
+  type: categorical
+  categories: ["US", "IN", "CN", "GB", "DE", "FR"]
+  description: "Country where the transaction originated"
+
+device:
+  type: categorical
+  categories: ["Android", "iOS", "Windows", "macOS"]
+  description: "Device type used"
+
+is_foreign:
+  type: boolean
+  description: "1 if country ≠ user's home country, else 0"
+
+is_high_risk_country:
+  type: boolean
+  description: "1 if country is on high‑risk blacklist (e.g. CN, IN), else 0"
+
+prev_transactions_24h:
+  type: integer
+  min: 0
+  description: "Number of transactions by this user in the previous 24 hours"
+
+avg_amount_30d:
+  type: float
+  min: 0
+  description: "User’s average transaction amount over the past 30 days"
+
+label:
+  type: boolean
+  description: "Target: 1 = fraud, 0 = legitimate"
